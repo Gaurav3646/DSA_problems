@@ -12,9 +12,10 @@ public:
        }
         int count=0;
           long long left = 0;
+         long long  right = totalSum;
         for(int i=0; i<nums.size()-1; i++){
              left += nums[i];
-            long long right = totalSum - left;
+            right -= nums[i];
             if(left>=right){
                 count++;
             }
