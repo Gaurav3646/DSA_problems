@@ -17,7 +17,7 @@ public:
           int right = 0;
            if(root->val>=low)
         left =  solve(root->left, low, high);
-          cout<<root->val<<endl;
+          // cout<<root->val<<endl;
           if(root->val>high) return left;
            if(root->val>=low) 
          return left + root->val + solve(root->right, low, high);
