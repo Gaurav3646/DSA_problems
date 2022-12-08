@@ -16,12 +16,13 @@ public:
 //             if(p[i].first==INT_MAX)continue;
             
 //         }
-        int l=-1;
-        int r=-1;
-         
+        // int l=-1;
+        // int r=-1;
+         int l=0;
+         int r=0;
         for(int i=0; i<s.length(); i++){
               if(r<i){
-                if(l!=-1 && r!=-1)
+                // if(l!=-1 && r!=-1)
                  ans.push_back(r-l+1);
                   r = i;
                   l = i;
@@ -32,7 +33,7 @@ public:
             
             
         }
-    if(l!=-1 && r!=-1)
+    // if(l!=-1 && r!=-1)
         ans.push_back(r-l+1);
         return ans;
     }
