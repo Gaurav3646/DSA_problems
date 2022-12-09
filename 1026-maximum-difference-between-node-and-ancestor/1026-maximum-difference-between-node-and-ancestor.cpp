@@ -13,14 +13,14 @@ class Solution {
     
 public:
     int solve(TreeNode* root, int mini, int maxi){
-       if(root==NULL) return INT_MIN;
+       if(root==NULL) return maxi-mini;
         if(root->val>maxi){
             maxi = root->val;
         }
         else if(root->val<mini){
             mini = root->val;
         }
-          int ans = maxi-mini;
+          int ans = INT_MIN;
           ans = max(ans, solve(root->left, mini, maxi));
           ans = max(ans, solve(root->right, mini, maxi));
         return ans;
