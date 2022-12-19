@@ -1,18 +1,17 @@
 class Solution {
 public:
-    bool dfs(vector<vector<int>> &adj, int u,int &x, vector<bool> &visited){
+   void dfs(vector<vector<int>> &adj, int u,int &x, vector<bool> &visited){
         
            visited[u] = true;
         if(visited[x]){
-            return true;
+            return;
         }
-        bool ans = false;
+        // bool ans = false;
         for(auto &v: adj[u]){
             if(!visited[v]){
-              ans |= dfs(adj, v, x, visited);
+              dfs(adj, v, x, visited);
             }
         }
-        return ans;
     }
     bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {
         vector<vector<int>> adj(n);
@@ -23,6 +22,7 @@ public:
             adj[v].push_back(u);
         }
         vector<bool> visited(n, false);
-        return dfs(adj, source, destination, visited);
+      dfs(adj, source, destination, visited);
+        return visited[destination];
     }
 };
