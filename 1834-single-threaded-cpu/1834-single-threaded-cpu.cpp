@@ -32,13 +32,13 @@ public:
            vector<int> top = q.top();
             q.pop();
              time -= top[0];
-            cout<<top[1]<<endl;
+            // cout<<top[1]<<endl;
             ans.push_back(-top[1]);
             }
 
         }
         while(!q.empty()){
-            cout<<"*";
+            // cout<<"*";
             vector<int> top = q.top();
             q.pop();
             ans.push_back(-top[1]);
