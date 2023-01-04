@@ -9,12 +9,12 @@ public:
         for(auto &feq:mp){
             int f = feq.second;
             if(f==1) return -1;
-            int t = f/3;
-            int rem = f%3;
+            int t = (f+2)/3;
+            // int rem = f%3;
             ans += t;
-            if(rem==2||rem==1){
-               ans += 1;
-            } 
+            // if(rem==2||rem==1){
+            //    ans += 1;
+            // } 
         }
         return ans;
     }
