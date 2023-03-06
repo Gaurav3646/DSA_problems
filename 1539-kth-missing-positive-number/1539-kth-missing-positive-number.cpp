@@ -15,9 +15,9 @@ public:
         }
         cout<<arr[e]<<endl;
     if((k-(arr[e]-e-1))>0){
-         return (k-(arr[e]-e-1)) +arr[e];
+         return k+e+1;
     }else{
-       return (k-(arr[e]-e-1)) +arr[e]-1;
+       return k+e;
     }
         return -1;
     }
