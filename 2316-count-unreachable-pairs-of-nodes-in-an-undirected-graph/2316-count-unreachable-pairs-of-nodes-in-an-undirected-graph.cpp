@@ -29,7 +29,7 @@ public:
         for(auto &c:vect){
           sum += c;  
         }
-        cout<<sum<<endl;
+        // cout<<sum<<endl;
         long long ans=0;
         for(auto &c : vect){
             sum -= c;
