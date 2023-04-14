@@ -1,45 +1,15 @@
 class Solution {
 public:
-    //     int  solve(string text1, string text2, int i1, int i2, vector<vector<int>> &dp){
-//            if(i1>=text1.length()||i2>=text2.length()){
-//                return 0;
-//            }
-//         if(dp[i1][i2]!=-1){
-//             return dp[i1][i2];
-//         }
-//         int mx = INT_MIN;
-//         if(text1[i1]==text2[i2]){
-//           mx = max(mx, 1+ solve(text1, text2, i1+1, i2+1, dp));
-//         }
-//         else{
-//            mx = max(solve(text1, text2, i1+1, i2, dp),  solve(text1, text2, i1, i2+1, dp));
-            
-//         }
-//         return dp[i1][i2] = mx;
-//         }
-    int solveTab(string text1, string text2){
-        vector<vector<int>> dp(text1.length()+1, vector<int>(text2.length()+1, 0));
-        for(int i1=text1.length()-1; i1>=0; i1--){
-       for(int i2=text2.length()-1; i2>=0; i2--){
-           int mx = INT_MIN;
-        if(text1[i1]==text2[i2]){
-          mx = max(mx, 1+ dp[i1+1][i2+1]);
-        }
-        else{
-           mx = max(dp[i1+1][i2],  dp[i1][i2+1]);
-            
-        }
-         dp[i1][i2] = mx;   
-       }
-        }
-        return dp[0][0];
+    int memo[1000][1000] = {0};
+    int longestPalindromeSubseq(const string& s) {
+        return dp(s, 0, s.size() - 1);
     }
-    int longestPalindromeSubseq(string s) {
-        string s1 = s;
-        reverse(s.begin(), s.end());
-        //  vector<vector<int>> dp(s1.length(), vector<int>(s.length(), -1));
-       // return solve(s1, s, 0, 0, dp);
-        return solveTab(s1, s);
-       
+    int dp(const string& s, int l, int r) {
+        if (l > r) return 0; 
+        if (l == r) return 1; 
+        if (memo[l][r] != 0) return memo[l][r];
+        if (s[l] == s[r])
+            return memo[l][r] = dp(s, l+1, r-1) + 2;
+        return memo[l][r] = max(dp(s, l+1, r), dp(s, l, r-1));
     }
 };
