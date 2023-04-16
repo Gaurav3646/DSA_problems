@@ -18,7 +18,7 @@ public:
         int res = 1;
         queue<pair<TreeNode*, int>> q;
 
-        q.push({root, 0});     
+        q.push({root, 1});     
         
         while(!q.empty())
         {
@@ -38,10 +38,10 @@ public:
                 q.pop();
 
                 if(p.first->left != NULL)
-                    q.push({p.first->left, (long long)2 * idx + 1});
+                    q.push({p.first->left, (long long)2 * idx});
 
                 if(p.first->right != NULL)
-                    q.push({p.first->right, (long long) 2 * idx + 2});
+                    q.push({p.first->right, (long long) 2 * idx+1});
             }
         }
         
