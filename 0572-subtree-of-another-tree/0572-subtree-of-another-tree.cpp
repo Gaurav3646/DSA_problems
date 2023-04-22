@@ -13,9 +13,9 @@ class Solution {
 public:
     bool solve(TreeNode* root, TreeNode* subRoot){
         if(!root && !subRoot) return true;
-        else if((!root && subRoot)||(root && !subRoot)) return false;
+        else if((!root && subRoot)||(root && !subRoot) || (root->val != subRoot->val)) return false;
        
-return solve(root->left, subRoot->left)  && root->val == subRoot->val && solve(root->right, subRoot->right);
+return solve(root->left, subRoot->left)  && solve(root->right, subRoot->right);
     }
     bool isSubtree(TreeNode* root, TreeNode* subRoot) {
     
