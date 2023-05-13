@@ -3,16 +3,13 @@ public:
     long long maximumOr(vector<int>& nums, int k) {
        vector<long long> left(nums.size());
          vector<long long> right(nums.size());
-        long long ors =0;
+        long long orsLeft =0;
+        long long orsRight =0;
         for(int i=0; i<nums.size(); i++){
-            left[i] = ors;
-            ors |= nums[i];
-            
-        }
-         ors = 0;
-        for(int i=nums.size()-1; i>=0; i--){
-            right[i] = ors;
-            ors |= nums[i];
+            left[i] = orsLeft;
+            right[nums.size()-1-i] = orsRight;
+            orsLeft |= nums[i];
+            orsRight |= nums[nums.size()-1-i];
             
         }
         long long maxi = 0;
@@ -27,12 +24,9 @@ public:
             }
             
         }
-       
-    
       long long  ans = maxi|left[ind]|right[ind];
         return ans;
         
     }
-
 
 };
