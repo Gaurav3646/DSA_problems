@@ -3,11 +3,13 @@ public:
     priority_queue<int , vector<int> , greater<int>> pq;
     int x;
     KthLargest(int k, vector<int>& nums) {
+         priority_queue<int , vector<int> , greater<int>> npq;
+        pq= npq;
         int i = 0;
         x = k;
         while(i<nums.size()){
              pq.push(nums[i]);
-            if(pq.size()==k+1){
+            if(pq.size()>k){
                 // cout<<pq.top()<<endl;
                 pq.pop();
                 
@@ -20,7 +22,7 @@ public:
          
            pq.push(val);
         // cout<<pq.top()<<endl;
-        if(pq.size()==x+1)
+        if(pq.size()>x)
            pq.pop();
         return pq.top();  
         
