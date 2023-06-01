@@ -2,39 +2,38 @@ class Solution {
 public:
 
     int shortestPathBinaryMatrix(vector<vector<int>>& grid) {
-        vector<vector<int>> minDist(grid.size(), vector<int>(grid[0].size(), INT_MAX));
-        if(grid[0][0]==1) return -1;
-        minDist[0][0] = 1;
-        set<pair<int,pair<int, int>>> st;
-        st.insert({1, {0, 0}});
-        while(!st.empty()){
-           auto p  = *(st.begin());
-            st.erase(st.begin());
-            int dist = p.first;
-            int r = p.second.first;
-            int c = p.second.second;
-         int row[] = {0,0, +1, +1, +1, -1, -1, -1};
-         int col[] = {-1,+1, 0, -1, +1, 0, -1, +1};
-         int ans =INT_MAX;
-         for(int i=0; i<8; i++){
-            int nr = r + row[i];
-            int nc = c + col[i];
-            if(nr>=grid.size() || nc>=grid[0].size() || min(nr, nc)<0 || grid[nr][nc]){
-             continue;
-            }
-            
-             if(dist+1<minDist[nr][nc]){
-                  if(minDist[nr][nc]!=INT_MAX){
-                      st.erase({minDist[nr][nc], {nr, nc}});
-                  }
-                 minDist[nr][nc] = dist+1;
-                 st.insert({minDist[nr][nc], {nr, nc}});
-             }
-             
+      int rr[8] = {1,1,0,-1,-1,-1,0,1};
+      int cc[8] = {0,-1,-1,-1,0,1,1,1};
+        int n = grid.size();
+        queue<int> q;
+      
+    vector<vector<int>> vis(n, vector<int>(n , 0));
+        // if(i==n-1&&j==n-1) return 1;
+        int ans = 0;
+        if(grid[0][0]) return -1;
+        q.push(0);
+        vis[0][0] = 1;
+        while(!q.empty()){
+            int size = q.size();
+            ans++;
+            for(int j=0; j<size; j++){
+            int x = q.front();
+                q.pop();
+            int r = x/n;
+            int c = x%n;
+            if(r==n-1&&c==n-1) return ans;
+            for(int i=0; i<8; i++){
+                int nr = rr[i]+r;
+                int nc = cc[i]+c;
+                
+                if(min(nr, nc)>=0 && max(nr, nc)<n && !grid[nr][nc] && !vis[nr][nc]){
+                    vis[nr][nc] = 1;
+                    q.push(nr*n+nc);
+                }
+            }     
         }
-            }
-        if(minDist[grid.size()-1][grid[0].size()-1] == INT_MAX) return -1;
-        return minDist[grid.size()-1][grid[0].size()-1];
+    }
+        return -1;
         
     }
 };
