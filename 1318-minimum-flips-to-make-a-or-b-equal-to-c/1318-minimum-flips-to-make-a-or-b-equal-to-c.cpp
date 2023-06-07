@@ -5,11 +5,14 @@ public:
         int f = x^c;
         int d = a&b;
         int ans = 0;
-        for(int i=0; i<=31; i++){
-            if((f>>i)&1){
-                if((d>>i)&1) ans+=2;
+        while(f){
+            if(f&1){
+                if(d&1) ans+=2;
                 else ans++;
             }
+            
+            f >>= 1;
+            d >>= 1;
             
         }
         return ans;
