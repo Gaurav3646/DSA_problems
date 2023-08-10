@@ -10,16 +10,15 @@ public:
         int ans = nums.size();
         int count = 1;
         int j=0;
-     unordered_set<int> st;
-        st.insert(nums[j]);
+     // unordered_set<int> st;
+        // st.insert(nums[j]);
         for(int i=1; i<nums.size();){
           // cout<<nums[i]<<" ";
-            if(st.count(nums[i])){
+            if(nums[i]-nums[i-1]==0){
                 i++;
             } 
           else if(nums[i]-nums[j]<nums.size()){
                count++;
-               st.insert(nums[i]);
                i++;
            }
            else{
