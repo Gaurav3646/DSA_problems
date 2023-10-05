@@ -21,28 +21,43 @@ public:
         //     return nums[0];
         // }
         // return x;
-        
-        
-        
-        
-       // moore voting algo
-     // majority element always exists
-        
-        int count = 0;
-        int el;
-        for(int i=0; i<nums.size(); i++){
-            if(count == 0){
-               count++;
-                el = nums[i];
-            }
-            else if(el==nums[i]){
+        int count=0;
+        int num = -1;
+        for(auto &el:nums){
+            if(el==num){
                 count++;
+            }
+            else if(count==0){
+                count++;
+                num = el;
             }
             else{
                 count--;
             }
         }
-        return el;
+        return num;
+        
+        
+        
+        
+//        // moore voting algo
+//      // majority element always exists
+        
+//         int count = 0;
+//         int el;
+//         for(int i=0; i<nums.size(); i++){
+//             if(count == 0){
+//                count++;
+//                 el = nums[i];
+//             }
+//             else if(el==nums[i]){
+//                 count++;
+//             }
+//             else{
+//                 count--;
+//             }
+//         }
+//         return el;
             
     }
 };
