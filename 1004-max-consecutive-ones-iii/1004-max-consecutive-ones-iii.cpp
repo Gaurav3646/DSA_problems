@@ -1,13 +1,20 @@
 class Solution {
 public:
-   
-        int longestOnes(vector<int>& A, int K) {
-        int i = 0, j;
-        for (j = 0; j < A.size(); ++j) {
-            if (A[j] == 0) K--;
-            if (K < 0 && A[i++] == 0) K++;
+    int longestOnes(vector<int>& nums, int k) {
+        int i = 0;
+        int j = 0;
+        while (j < nums.size()) {
+            if (nums[j] == 0) {
+                k--;
+            }
+            if (k < 0) {
+                if (nums[i] == 0) {
+                    k++;
+                }
+                i++;
+            }
+            j++;
         }
-        return A.size() - i;
+        return j - i; // Corrected return statement
     }
-    
 };
